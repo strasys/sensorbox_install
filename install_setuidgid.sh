@@ -18,6 +18,8 @@ chown www-data:www-data VDF.xml
 cd /var/secure/
 echo "change gid und uid of user.txt"
 chown www-data:www-data user.txt
+wait
+cd /usr/lib/cgi-bin/
 echo "change user mode of init_wistcon-020.sh"
 chmod 110 init_wistcon-020.sh
 echo "change user mode of firmware"

@@ -7,7 +7,7 @@
 
 #Installation of Server components
 #
-echo "update debian wheeze 7"
+echo "update debian"
 apt-get update
 wait
 echo "Debian Version"
@@ -45,7 +45,7 @@ apt-get purge bonescript bone101 c9-core-installer bb-node-red-installer
 wait
 echo "Installation of apache2, php7 and libapache2-mod-php7 completed"
 echo "restart apache2"
-service apache2 restart
+systemctl restart apache2.service
 wait
 echo "The network interface file needs to contain following:\n
 The rest needs tobe uncommented\n\n
@@ -56,7 +56,7 @@ iface lo inet loopback\n
 read -p "Change the /etc/network/interfaces file and than press enter to continue."
 apt-get install network-manager
 wait
--p "Would you like to activate SSL encryption? (y/n)? " RESP
+"Would you like to activate SSL encryption? (y/n)? " RESP
 if [ "$RESP" = "y" ]; then
 echo "Generate private key"
 openssl genrsa -out /etc/ssl/private/apache.key 2048 

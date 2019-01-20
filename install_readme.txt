@@ -13,19 +13,18 @@ mkdir /tmp/wistcon-sensing
 cd /tmp/wistcon-sensing
 git init
 git pull https://github.com/strasys/sensorbox_install.git
+chmod a+x install_wistcon-sensing.sh
+chmod a+x install_apache2_php7.sh
+chmod a+x install_setuidgid.sh 
 
 1. Open install_wistcon-sensing.sh
 
 1.1. Read instructions in code
 
-2. install_setuidgid.sh
-
-3. install_apache2_php7.s
-
-4. manual adjustments after installation steps 1 - 3
-
 4.1. Check if apache files are correctly set up.
 	/etc/apache2 ...
+after changes do:
+systemctl restart apache2.service
 4.2.1 see boot/uEnv.txt
 ***** Start uEnv.txt ******
 #Docs: http://elinux.org/Beagleboard:U-boot_partitioning_layout_2.0
@@ -96,7 +95,8 @@ cmdline=coherent_pool=1M net.ifnames=0 quiet
 ***Ende uEnv.txt*****
 
 4.3. set user rights !!!
-	change password of user debian:
+To change the password for a user:
+sudo passwd username
 		
 
 4.4. enable network-manager => this enables hot plug
@@ -139,9 +139,11 @@ cmdline=coherent_pool=1M net.ifnames=0 quiet
 		#    network 192.168.7.0
 		#    gateway 192.168.7.1
 
+
+use: ifconfig -a to get the hardwareaddress	
 	Install	network-manager
 	apt-get install network-manager
-	/etc/NetworkManager.conf
+	/etc/NetworkManager/NetworkManager.conf
 		Set managed=true
 	service network-manager restart
 
