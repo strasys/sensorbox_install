@@ -10,30 +10,40 @@
 echo "update debian wheeze 7"
 apt-get update
 wait
+echo "Debian Version"
+cat /etc/debian_version
+wait
 echo "install apache2"
 apt-get install apache2
 wait
-echo "install php5 libapache2-mod-php5"
-apt-get install php5 libapache2-mod-php5 php5-curl
+echo "install php5 libapache2-mod-php7"
+apt-get install php7.0 libapache2-mod-php7.0 php7.0-curl php7.0-xml
 wait
 echo "Disabeling of not used services:"
 echo "disabel cloud9.service"
 systemctl disable cloud9.service
+wait
+cd /lib/systemd/system/
 echo "disable bonescript.service"
 systemctl disable bonescript.service
+wait
+rm bonescript.service
 echo "disable bonescript.socket"
 systemctl disable bonescript.socket
+wait
+rm bonescript.socket
 echo "disable bonescript-autorun.service"
 systemctl disable bonescript-autorun.service
+wait
+rm bonescript-autorun.service
 echo "disable avahi-daemon.service"
 systemctl disable avahi-daemon.service
-echo "disable gateone.service"
-systemctl disable gateone.service
-echo "disable gdm.service"
-systemctl disable gdm.service
-echo "disable mpd.service"
-systemctl disable mpd.service
-echo "Installation of apache2, php5 and libapache2-mod-php5 completed"
+wait
+rm avahi-daemon.service
+echo "purge bonescript bone101 c9-core-installer bb-node-red-installer"
+apt-get purge bonescript bone101 c9-core-installer bb-node-red-installer
+wait
+echo "Installation of apache2, php7 and libapache2-mod-php7 completed"
 echo "restart apache2"
 service apache2 restart
 wait

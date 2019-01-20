@@ -18,10 +18,6 @@ chown www-data:www-data VDF.xml
 cd /var/secure/
 echo "change gid und uid of user.txt"
 chown www-data:www-data user.txt
-echo "change user mode of pushButtonSensing\n"
-cd /usr/lib/cgi-bin/
-chown root:www-data pushButtonSensing
-chmod 4110 pushButtonSensing
 echo "change user mode of init_wistcon-020.sh"
 chmod 110 init_wistcon-020.sh
 echo "change user mode of firmware"
@@ -29,20 +25,15 @@ chmod 110 firmware
 echo "change user mode of RTChandler020"
 chown root:www-data RTChandler020
 chmod 4110 RTChandler020
-echo "change user mode of PT1000handler_020"
-chown root:www-data PT1000handler_020
-chmod 4110 PT1000handler_020
+echo "change user mode of PT1000handler_sensingbox"
+chown root:www-data PT1000handler_sensingbox
+chmod 4110 PT1000handler_sensingbox
 echo "change user mode of GPIOhandler_020"
 chown root:www-data GPIOhandler_020
 chmod 4110 GPIOhandler_020
-echo "change user mode of AINOUThandler"
-chown root:www-data AINOUThandler
-chmod 4110 AINOUThandler
 echo "change user mode of rweeprom"
 chown root:www-data rweeprom
 chmod 4110 rweeprom
-echo "change user mode of init-php.sh"
-chmod 110 init-php.sh
 echo "change user mode of set_hostname.sh"
 chmod 110 set_hostname.sh
 echo "change user mode of feuchte"
@@ -56,9 +47,9 @@ else
 	read -p "Would you like to continue to install the server components? (y/n)? " RESP
 	if [ "$RESP" = "y" ]; then
 		cd /tmp/
-		chmod a+x install_apache2_php5.sh
+		chmod a+x install_apache2_php7.sh
 		wait
-		./install_apache2_php5.sh
+		./install_apache2_php7.sh
 	else
 		echo "You stopped the installation after set of uid's and access modes.\n"	
 		exit 1
