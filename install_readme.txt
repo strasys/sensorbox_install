@@ -1,32 +1,103 @@
 Installation of components
 # Johannes Strasser
-# 28.10.2017
+# 20.01.2018
 # www.wistcon.at
 #
 
 Installation steps:
+Preparation:
+set root file for apache server to /var/www/
+
+0. make direktory and pull from git
+mkdir /tmp/wistcon-sensing
+cd /tmp/wistcon-sensing
+git init
+git pull https://github.com/strasys/sensorbox_install.git
+
 1. Open install_wistcon-sensing.sh
 
 1.1. Read instructions in code
 
 2. install_setuidgid.sh
 
-3. install_apache2_php5.s
+3. install_apache2_php7.s
 
 4. manual adjustments after installation steps 1 - 3
 
 4.1. Check if apache files are correctly set up.
 	/etc/apache2 ...
-
-4.2. Set right CAPE: /etc/default/capemgr
-	CAPE=wistcon-DRC020 (= example)
-	Info: The file is the device tree file placed at
-	/lib/firmware/wistcon-DRC020-00A0.dtbo
 4.2.1 see boot/uEnv.txt
-	##disable HDMI cape!!
+***** Start uEnv.txt ******
+#Docs: http://elinux.org/Beagleboard:U-boot_partitioning_layout_2.0
+
+uname_r=4.14.79-ti-r86
+#uuid=
+#dtb=
+
+
+###U-Boot Overlays###
+###Documentation: http://elinux.org/Beagleboard:BeagleBoneBlack_Debian#U-Boot_Overlays
+###Master Enable
+enable_uboot_overlays=1
+###
+###Overide capes with eeprom
+#uboot_overlay_addr0=/lib/firmware/<file0>.dtbo
+#uboot_overlay_addr1=/lib/firmware/<file1>.dtbo
+#uboot_overlay_addr2=/lib/firmware/<file2>.dtbo
+#uboot_overlay_addr3=/lib/firmware/<file3>.dtbo
+###
+###Additional custom capes
+uboot_overlay_addr4=/lib/firmware/BB-I2C2-00A0.dtbo
+uboot_overlay_addr5=/lib/firmware/BB-I2C1-00A0.dtbo
+uboot_overlay_addr6=/lib/firmware/WISTCON-SENSING20-00A0.dtbo
+#uboot_overlay_addr7=/lib/firmware/<file7>.dtbo
+###
+###Custom Cape
+#dtb_overlay=/lib/firmware/WISTCON-SENSING20-00A0.dtbo
+#dtb_overlay=/lib/firmware/BB-I2C2-00A0.dtbo
+###
+###Disable auto loading of virtual capes (emmc/video/wireless/adc)
+#disable_uboot_overlay_emmc=1
+disable_uboot_overlay_video=1
+#disable_uboot_overlay_audio=1
+disable_uboot_overlay_wireless=1
+disable_uboot_overlay_adc=1
+###
+###PRUSS OPTIONS
+###pru_rproc (4.4.x-ti kernel)
+#uboot_overlay_pru=/lib/firmware/AM335X-PRU-RPROC-4-4-TI-00A0.dtbo
+###pru_rproc (4.9.x-ti kernel)
+#uboot_overlay_pru=/lib/firmware/AM335X-PRU-RPROC-4-9-TI-00A0.dtbo
+###pru_rproc (4.14.x-ti kernel)
+#uboot_overlay_pru=/lib/firmware/AM335X-PRU-RPROC-4-14-TI-00A0.dtbo
+###pru_uio (4.4.x-ti, 4.9.x-ti, 4.14.x-ti & mainline/bone kernel)
+#uboot_overlay_pru=/lib/firmware/AM335X-PRU-UIO-00A0.dtbo#
+###Cape Universal Enable
+#enable_uboot_cape_universal=1
+###
+###Debug: disable uboot autoload of Cape
+disable_uboot_overlay_addr0=1
+disable_uboot_overlay_addr1=1
+disable_uboot_overlay_addr2=1
+disable_uboot_overlay_addr3=1
+###
+###U-Boot fdt tweaks... (60000 = 384KB)
+#uboot_fdt_buffer=0x60000
+###U-Boot Overlays###
+
+cmdline=coherent_pool=1M net.ifnames=0 quiet
+
+#In the event of edid real failures, uncomment this next line:
+#cmdline=coherent_pool=1M net.ifnames=0 quiet video=HDMI-A-1:1024x768@60e
+
+##enable Generic eMMC Flasher:
+##make sure, these tools are installed: dosfstools rsync
+#cmdline=init=/opt/scripts/tools/eMMC/init-eMMC-flasher-v3.sh
+***Ende uEnv.txt*****
 
 4.3. set user rights !!!
-	see Unternehmensstrategie_2017
+	change password of user debian:
+		
 
 4.4. enable network-manager => this enables hot plug
 	/etc/network/interfaces
@@ -67,6 +138,7 @@ Installation steps:
 		#    netmask 255.255.255.0
 		#    network 192.168.7.0
 		#    gateway 192.168.7.1
+
 	Install	network-manager
 	apt-get install network-manager
 	/etc/NetworkManager.conf
@@ -108,6 +180,12 @@ Installation steps:
 	//die Uhr in die Hardwareclock schreiben
 	hwclock --systohc
 	//hwclock --systohc
+
+5.5. set crone jobs
+shell: crontabe -e
+add following in crontabe -e
+@reboot /usr/lib/cgi-bin/firmware
+@reboot php /var/www/startupSetting.php
 
 	
 
