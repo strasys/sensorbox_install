@@ -12,8 +12,9 @@ include_once ('/var/www/authentification.inc.php');
 if($adminstatus == true){
 
 $xml=simplexml_load_file("/var/www/VDF.xml") or die ("Error: Cannot create object");
-
-$xml->$_POST["Node_Name"]->addChild("datatocloud", $_POST["Data_String"]);
+$Node_Name = $_POST['Node_Name'];
+$Data_String = $_POST['Data_String'];
+$xml->$Node_Name->addChild("datatocloud", $Data_String);
 
 $xml->asXML("/var/www/VDF.xml");
 

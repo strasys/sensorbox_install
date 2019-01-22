@@ -20,7 +20,7 @@ if ($statusFile == false)
 	fwrite($statusFile, "stop");
 	fclose($statusFile);
 	$statusbool = false;
-	break;
+	
 }
 elseif ($statusFile == true)
 {

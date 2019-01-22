@@ -2,8 +2,8 @@
 // Gibt an welche PHP-Fehler �berhaupt angezeigt werden
 //error_reporting(E_ALL | E_STRICT);
 // Um die Fehler auch auszugeben, aktivieren wir die Ausgabe
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 // Da man in einem Produktivsystem �blicherweise keine Fehler ausgeben
 // will sondern sie nur mitloggen will, bietet es sich an dort die
 // Ausgabe der Fehler zu deaktivieren und sie stattdessen in ein Log-File

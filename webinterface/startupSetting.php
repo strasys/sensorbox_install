@@ -43,7 +43,7 @@ $statusFile = fopen("/var/www/tmp/DNSservicestatus.txt", "w");
 
 	elseif ($statusFile)
 	{
-		//exec("chown www-data:root /var/www/tmp/DNSservicestatus.txt");
+		exec("chown www-data:root /var/www/tmp/DNSservicestatus.txt");
 		switch (($DNSService)){
 			case 'stop':
 				$statusWord = "stop";
@@ -95,7 +95,7 @@ $statusFile = fopen("/var/www/tmp/DNSservicestatus.txt", "w");
 	}
 	elseif ($statusFile)
 	{
-		//exec("chown www-data:root /var/www/tmp/CloudPushservicestatus.txt");
+		exec("chown www-data:root /var/www/tmp/CloudPushservicestatus.txt");
 		switch (($PushDataCloudService)){
 			case 'stop':
 				$statusWord = "stop";
@@ -149,7 +149,7 @@ $statusFile = fopen("/var/www/tmp/DNSservicestatus.txt", "w");
 	}
 	elseif ($statusFile)
 	{
-		//exec("chown www-data:root /var/www/tmp/indicatorLEDstatus.txt");
+		exec("chown www-data:root /var/www/tmp/indicatorLEDstatus.txt");
 		switch (($indicatorLEDServicetask)){
 			case 'stop':
 				$statusWord = "stop";
