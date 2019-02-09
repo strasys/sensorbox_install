@@ -40,6 +40,19 @@ wait
 echo "Clean WISTCON-SENSING-00A0.dtbo from /usr/lib/cgi-bin/"
 rm WISTCON-SENSING20-00A0.dtbo
 wait
+echo "Install network-manager"
+sudo apt-get install network-manager
+wait
+echo "install ntp"
+sudo apt-get install ntp
+wait
+echo "generat tmp directory in /var/www/"
+cd /var/www/
+wait
+sudo mkdir tmp
+wait
+chmod a+xrw tmp
+wait
 
 #Ask user what's next
 read -p "Would you like to continue with change of uid gid of files? (y/n)? " RESP
