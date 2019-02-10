@@ -36,7 +36,8 @@ if (isset($_POST["setHUMIDITYNameFlag"])){
 
 		$xml=simplexml_load_file("/var/www/VDF.xml") or die("Error: Cannot create object");
 		for ($i=0; $i<2; $i++){
-			$xml->HUMIDITY[$i]->$_POST["HUMIDITYext"] = $HUMIDITYText[$i];
+			$HUMIDITYext = $_POST["HUMIDITYext"];
+			$xml->HUMIDITY[$i]->$HUMIDITYext = $HUMIDITYText[$i];
 		}
 		echo $xml->asXML("/var/www/VDF.xml");
 	}

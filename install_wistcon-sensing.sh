@@ -51,18 +51,22 @@ cd /var/www/
 wait
 sudo mkdir tmp
 wait
-chmod a+xrw tmp
+echo "chmod a+xrw tmp"
+sudo chmod a+xrw tmp
+wait
+echo "chown root:www-data tmp"
+sudo chown root:www-data tmp
 wait
 
 #Ask user what's next
 read -p "Would you like to continue with change of uid gid of files? (y/n)? " RESP
 if [ "$RESP" = "y" ]; then
 	echo "change uid of install_setuidgid.sh"
-	cd /tmp/
+	cd /tmp/wistcon-sensing/
 	wait
-	chmod o+x install_setuidgid.sh
+	chmod a+x install_setuidgid.sh
 	wait
-	./install_setuidgid.sh
+	sudo ./install_setuidgid.sh
 else
 	echo "Installation stopped after copy of components from version server.\n"
 	exit 1
