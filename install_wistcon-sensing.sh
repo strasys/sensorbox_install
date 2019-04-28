@@ -14,6 +14,8 @@
 #
 #Ask user if the files should be fetched from the git server or transfered via sftp://
 
+sudo apt-get update
+wait
 cd /tmp/wistcon-sensing/
 wait
 echo "generate folder /var/secure/"
@@ -41,10 +43,10 @@ echo "Clean WISTCON-SENSING-00A0.dtbo from /usr/lib/cgi-bin/"
 rm WISTCON-SENSING20-00A0.dtbo
 wait
 echo "Install network-manager"
-sudo sudo apt-get install network-manager
+sudo apt-get install network-manager
 wait
 echo "install ntp"
-sudo sudo apt-get install ntp
+sudo apt-get install ntp
 wait
 echo "generat tmp directory in /var/www/"
 cd /var/www/

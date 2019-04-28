@@ -8,53 +8,55 @@
 #Installation of Server components
 #
 echo "update debian"
-apt-get update
+sudo apt-get update
 wait
 echo "Debian Version"
-cat /etc/debian_version
+sudo cat /etc/debian_version
 wait
 echo "install apache2"
-apt-get install apache2
+sudo apt-get install apache2
 wait
 echo "install php5 libapache2-mod-php7"
-apt-get install php7.0 libapache2-mod-php7.0 php7.0-curl php7.0-xml
+sudo apt-get install php7.0 libapache2-mod-php7.0 php7.0-curl php7.0-xml
 wait
 echo "Disabeling of not used services:"
 echo "disabel cloud9.service"
-systemctl disable cloud9.service
+sudo systemctl disable cloud9.service
 wait
 cd /lib/systemd/system/
 echo "disable bonescript.service"
-systemctl disable bonescript.service
+sudo systemctl disable bonescript.service
 wait
-rm bonescript.service
+sudo rm bonescript.service
 echo "disable bonescript.socket"
-systemctl disable bonescript.socket
+sudo systemctl disable bonescript.socket
 wait
-rm bonescript.socket
+sudo rm bonescript.socket
 echo "disable bonescript-autorun.service"
-systemctl disable bonescript-autorun.service
+sudo systemctl disable bonescript-autorun.service
 wait
-rm bonescript-autorun.service
+sudo rm bonescript-autorun.service
 echo "disable avahi-daemon.service"
-systemctl disable avahi-daemon.service
+sudo systemctl disable avahi-daemon.service
 wait
-rm avahi-daemon.service
+sudo rm avahi-daemon.service
 echo "purge bonescript bone101 c9-core-installer bb-node-red-installer"
-apt-get purge bonescript bone101 c9-core-installer bb-node-red-installer
+sudo apt-get purge bonescript bone101 c9-core-installer bb-node-red-installer
 wait
 echo "Installation of apache2, php7 and libapache2-mod-php7 completed"
 echo "restart apache2"
-systemctl restart apache2.service
+sudo systemctl restart apache2.service
+wait
+sudo apt-get autoremove
 wait
 echo "The network interface file needs to contain following:\n
-The rest needs tobe uncommented\n\n
+The rest needs to be uncommented\n\n
 # The loopback network interface\n
 auto lo\n
 iface lo inet loopback\n
 "
 read -p "Change the /etc/network/interfaces file and than press enter to continue."
-apt-get install network-manager
+#apt-get install network-manager
 wait
 "Would you like to activate SSL encryption? (y/n)? " RESP
 if [ "$RESP" = "y" ]; then
