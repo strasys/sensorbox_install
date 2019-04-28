@@ -184,8 +184,8 @@ use: ifconfig -a to get the hardwareaddress
 	//hwclock --systohc
 
 5.5. set crone jobs
-shell: crontabe -e
-add following in crontabe -e
+shell: crontab -e
+add following in crontab -e
 @reboot /usr/lib/cgi-bin/firmware
 @reboot php /var/www/startupSetting.php
 
