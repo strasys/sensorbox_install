@@ -33,7 +33,6 @@ uname_r=4.14.79-ti-r86
 #uuid=
 #dtb=
 
-
 ###U-Boot Overlays###
 ###Documentation: http://elinux.org/Beagleboard:BeagleBoneBlack_Debian#U-Boot_Overlays
 ###Master Enable
@@ -78,7 +77,6 @@ disable_uboot_overlay_adc=1
 disable_uboot_overlay_addr0=1
 disable_uboot_overlay_addr1=1
 disable_uboot_overlay_addr2=1
-disable_uboot_overlay_addr3=1
 ###
 ###U-Boot fdt tweaks... (60000 = 384KB)
 #uboot_fdt_buffer=0x60000
