@@ -21,25 +21,30 @@ $loopstatus = true;
 
 exec("flock /tmp/flockrweeprom /usr/lib/cgi-bin/rweeprom r 2 5 192 64", $deviceID);
 $deviceIDinfo = trim($deviceID[0]);
- 
-$data = array(
-	'deviceID' => $deviceIDinfo
-	);
-$data_string="";
-foreach($data as $key=>$value) 
-{
- $data_string = $key.'='.$value.'&'; 
-}
 
-$trimmed = rtrim($data_string, '&');
-//echo $trimmed."<br>";
-echo $loopstatus;	
+
+$loopstatus;	
 //To lock the service for the user a lock key must be set as well in the password file.
 //echo http_build_query($data) . "\n";
 while ($loopstatus)
 {
 	$loopstatus = $dnsloop->runstop();
 	set_time_limit(5);
+	
+	exec("hostname -I", $local_IP);
+	$IP = explode(" ", $local_IP[0]);
+	
+	$data = array(
+	    'deviceID' => $deviceIDinfo,
+	    'local_IP' => $IP[0]
+	);
+	
+	$data_string="";
+	foreach($data as $key => $value)
+	{
+	    $data_string = $data_string.$key.'='.$value.'&';
+	}
+	
 	//sudo apt-get install php5-curl => needed
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, 'https://www.strasys.at/dns/getclientIP.php');
@@ -47,7 +52,7 @@ while ($loopstatus)
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 	curl_setopt($ch, CURLOPT_POST, count($data));
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
 	$return = curl_exec($ch);
 	curl_close($ch);
 //	echo $return;
