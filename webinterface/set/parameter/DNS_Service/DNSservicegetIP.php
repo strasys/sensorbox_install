@@ -55,6 +55,8 @@ while ($loopstatus)
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
 	$return = curl_exec($ch);
 	curl_close($ch);
+	
+	unset($data_string);
 //	echo $return;
 	/*
 	//start request
