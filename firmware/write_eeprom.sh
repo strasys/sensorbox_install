@@ -9,7 +9,8 @@ sudo ./rweeprom w 2 5 0 "Dipl.-Ing. Johannes Strasser|www.wistcon.at|Kopfingi.I.
 wait
 sudo ./rweeprom w 2 5 64 "EL-200-010-001 rev 1.00                                         "
 wait
-sudo ./rweeprom w 2 5 128 "20190422                                                        "
+read -p 'Production Date: ' productiondate
+sudo ./rweeprom w 2 5 128 "$productiondate                                                 "
 wait
 read -p 'ProductID: ' productid
 sudo ./rweeprom w 2 5 192 "$productid    "
