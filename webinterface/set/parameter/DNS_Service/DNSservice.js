@@ -110,5 +110,6 @@ window.onload=startatLoad();
 	 	setgetStatusDNSservice("g","", function(){
 			setModeStatus();
 		});
-		setTimeout(function(){refreshStatus()}, 2000);
+		setTimeout(function(){refreshStatus()}, 10000);
 	}
+

@@ -25,6 +25,7 @@ chmod a+x install_setuidgid.sh
 	/etc/apache2 ...
 after changes do:
 systemctl restart apache2.service
+Info: sudo apt-get purge nginx nginx-common
 4.2.1 see boot/uEnv.txt
 ***** Start uEnv.txt ******
 #Docs: http://elinux.org/Beagleboard:U-boot_partitioning_layout_2.0
