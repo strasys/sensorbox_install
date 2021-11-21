@@ -33,7 +33,7 @@ unset($arr);
 	 $data_string = $data_string.'&'.$key.'='.$value; 
 	}
 	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, 'https://www.strasys.at/registration/setNewRegistrationData.php');
+	curl_setopt($ch, CURLOPT_URL, 'https://www.wistcon.at/registration/setNewRegistrationData.php');
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 	curl_setopt($ch, CURLOPT_POST, count($data));
