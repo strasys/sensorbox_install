@@ -4,6 +4,9 @@ Installation of components
 # www.wistcon.at
 #
 
+ssh root@IPaddress pwd: temppwd
+
+
 Installation steps:
 Preparation:
 set root file for apache server to /var/www/
@@ -19,13 +22,17 @@ chmod a+x install_setuidgid.sh
 
 1. Open install_wistcon-sensing.sh
 
+TODO: Installation Apache 2 hat unter bullsey nicht funktioniert!
+
 1.1. Read instructions in code
 
 4.1. Check if apache files are correctly set up.
 	/etc/apache2 ...
 after changes do:
 systemctl restart apache2.service
+
 Info: sudo apt-get purge nginx nginx-common
+
 4.2.1 see boot/uEnv.txt
 ***** Start uEnv.txt ******
 #Docs: http://elinux.org/Beagleboard:U-boot_partitioning_layout_2.0
