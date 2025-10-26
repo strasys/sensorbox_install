@@ -35,12 +35,12 @@ cp -rT /tmp/wistcon-sensing/firmware/ /usr/lib/cgi-bin/
 wait
 echo "Change drive /usr/lib/cgi-bin/"
 cd /usr/lib/cgi-bin/
-wait
-echo "Copy WISTCON-SENSING-00A0.dtbo to /lib/firmware/"
-cp WISTCON-SENSING20-00A0.dtbo /lib/firmware/
-wait
-echo "Clean WISTCON-SENSING-00A0.dtbo from /usr/lib/cgi-bin/"
-rm WISTCON-SENSING20-00A0.dtbo
+#wait
+#echo "Copy WISTCON-SENSING-00A0.dtbo to /lib/firmware/"
+#cp WISTCON-SENSING20-00A0.dtbo /lib/firmware/
+#wait
+#echo "Clean WISTCON-SENSING-00A0.dtbo from /usr/lib/cgi-bin/"
+#rm WISTCON-SENSING20-00A0.dtbo
 wait
 echo "Install network-manager"
 sudo apt-get install network-manager

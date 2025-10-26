@@ -15,7 +15,8 @@ set root file for apache server to /var/www/
 mkdir /tmp/wistcon-sensing
 cd /tmp/wistcon-sensing
 git init
-git pull https://github.com/strasys/sensorbox_install.git
+
+git pull https://github.com/strasys/sensorbox_install.git kernel6.12.x
 chmod a+x install_wistcon-sensing.sh
 chmod a+x install_apache2_php7.sh
 chmod a+x install_setuidgid.sh 
