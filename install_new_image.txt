@@ -1,0 +1,29 @@
+BeagleBone Black Debian 13 2025-09-05 IoT (v6.12.x)
+
+    Kernel: am33x-v6.12 branch
+    U-Boot: v2022.04-bbb.io-am335x-am57xx
+    Cockpit (on Port 9090): Cockpit
+
+Edit sysconf.txt (on the SD card’s FAT partition):
+
+    CONF_HOSTNAME=beaglebone
+    CONF_USER=debian
+    CONF_PASSWD=yourpassword
+
+Insert the SD card and boot the BeagleBone while holding the S2 button (to boot from SD).
+
+Once booted, flash the image to eMMC:
+    
+How to use the script to flash the eMMC
+
+    Write a bootable image to an SD card: using a tool like Etcher. 
+
+Edit the /boot/uEnv.txt file: on the SD card's Linux partition. 
+Find the line: cmdline=init=/opt/scripts/tools/eMMC/init-eMMC-flasher-v3.sh and remove the # at the beginning of the line to uncomment it. 
+Save the file: and insert the SD card into your BeagleBone Black. 
+Power on: the board while holding the user boot button (S2). 
+Release the button when the user LEDs start to flash in a sequential pattern. 
+Wait for the flashing process to complete, which is indicated when the board shuts itself off. 
+Remove the SD card and restart the board to boot from the newly flashed eMMC. 
+
+
